@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import {Phrase} from "../types";
+import {KanaType, Phrase} from "../types";
 import {COLORS} from "../colors";
 
 interface Props {
   savedPhrases: Phrase[]
   removePhrase: (phrase: Phrase) => void
+  kanaType: KanaType
 }
 
 const Section = styled.section`
@@ -50,12 +51,12 @@ const Delete = styled.button`
   border: radius: 4px;
 `
 
-export const SavedPhraseList = ({ savedPhrases, removePhrase }: Props) => (
+export const SavedPhraseList = ({ savedPhrases, removePhrase, kanaType }: Props) => (
   <Section>
     <Heading>Saved Phrases</Heading>
     <Flex>
     {savedPhrases.map((phrase, i) => <SavedPhrase key={i}>
-      <Kana>{phrase.hiragana}</Kana>
+      <Kana>{phrase[kanaType]}</Kana>
       <Romaji>{phrase.romaji}</Romaji>
       <Delete type="button" onClick={() => removePhrase(phrase)}>Delete</Delete>
     </SavedPhrase>)}

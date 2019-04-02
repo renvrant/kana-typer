@@ -1,6 +1,6 @@
 import { toHiragana, toKatakana } from 'wanakana'
 
-import {Action, AppState, createPhrase, initialAppState, Phrase} from "../types"
+import {Action, AppState, createPhrase, initialAppState, KANA_TYPE, Phrase} from "../types"
 import {SAVE_PHRASE, LOAD_PHRASES, CHANGE_FONT, CHANGE_KANA, UPDATE_CURRENT_PHRASE, CLEAR_PHRASES, REMOVE_PHRASE} from "./app.actions"
 import { savePhrases, getSavedPhrases } from "./storage.service"
 
@@ -32,7 +32,7 @@ export function appReducer(state: AppState = initialAppState, action: Action<any
     case CHANGE_FONT:
       return { ...state, font: action.payload }
     case CHANGE_KANA:
-      return { ...state, kanaType: action.payload }
+      return { ...state, kanaType: state.kanaType === KANA_TYPE.hiragana ? KANA_TYPE.katakana : KANA_TYPE.hiragana }
     default:
       return state
   }

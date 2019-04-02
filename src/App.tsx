@@ -2,7 +2,7 @@ import React, { useReducer, useEffect } from 'react';
 
 import {initialAppState, Phrase} from "./types";
 import {
-  appReducer,
+  appReducer, createChangeKanaAction,
   createLoadAction,
   createRemovePhrase,
   createSaveAction,
@@ -31,7 +31,9 @@ function App() {
   return (
     <div className="App">
       <TopBar>
-        <Options/>
+        <Options kanaType={state.kanaType}
+                 toggleKana={() => dispatch(createChangeKanaAction())}
+        />
       </TopBar>
       <main>
 
@@ -48,6 +50,7 @@ function App() {
         <AboutSection />
 
         <SavedPhraseList savedPhrases={state.saved}
+                         kanaType={state.kanaType}
                          removePhrase={(phrase: Phrase) => dispatch(createRemovePhrase(phrase))}
         />
       </main>

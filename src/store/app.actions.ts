@@ -30,5 +30,5 @@ export const createRemovePhrase = (payload: Phrase): Action<Phrase> =>
 export const createChangeFontAction = (payload: FontClass): Action<FontClass> =>
   createAction<FontClass>(CHANGE_FONT, payload)
 
-export const createChangeKanaAction = (payload: KanaType): Action<KanaType> =>
-  createAction<KanaType>(CHANGE_KANA, payload)
+export const createChangeKanaAction = (): Action<null> =>
+  createAction<null>(CHANGE_KANA)

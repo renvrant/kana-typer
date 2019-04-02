@@ -10,6 +10,9 @@ const Header = styled.header`
   padding: 20px 60px;
   background: #7E667F;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const Title = styled.h1`
