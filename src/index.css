@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,27 +10,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #333;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button,
+input,
+select
+{
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  border:none;
+  background-image:none;
+  background-color:transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.syllables {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  font-size: 0.4em;
-  font-weight: normal;
+button {
+  cursor: pointer;
 }

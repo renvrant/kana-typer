@@ -1,9 +1,22 @@
 import React, { useReducer, useEffect } from 'react';
 
-import { DisplayKana } from "./components/display-kana.component";
-import {initialAppState} from "./types";
-import {appReducer, createLoadAction, createSaveAction, createUpdateCurrentPhraseAction} from "./store";
-import {AboutSection} from "./components/about.component";
+import {initialAppState, Phrase} from "./types";
+import {
+  appReducer,
+  createLoadAction,
+  createRemovePhrase,
+  createSaveAction,
+  createUpdateCurrentPhraseAction
+} from "./store";
+import {
+  AboutSection,
+  SyllablesRow,
+  Options,
+  KanaDisplay,
+  SavedPhraseList,
+  MainInput,
+  TopBar
+} from "./components";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialAppState)
@@ -12,20 +25,32 @@ function App() {
     dispatch(createLoadAction())
   }, []);
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void =>
-    dispatch(createUpdateCurrentPhraseAction(e.target.value))
+  const getKana = () => state.currentPhrase[state.kanaType]
+  console.log(state)
 
   return (
     <div className="App">
-      <header>
-        <h1>Kana Typer</h1>
-      </header>
-      <AboutSection />
-      <DisplayKana kana={state.currentPhrase.hiragana}/>
-      <input type="text" onInput={handleInput} value={state.currentPhrase.romaji} />
-      <button type="button" onClick={() => dispatch(createSaveAction())}>Save Word</button>
+      <TopBar>
+        <Options/>
+      </TopBar>
+      <main>
 
-      {state.saved.map((phrase, i) => <div key={i}>{phrase.hiragana} - {phrase.romaji}</div>)}
+        <KanaDisplay>
+          <SyllablesRow kana={getKana()} />
+          {getKana()}
+        </KanaDisplay>
+
+        <MainInput value={state.currentPhrase.romaji}
+                   onSave={() => dispatch(createSaveAction())}
+                   onInput={(val: string) => dispatch(createUpdateCurrentPhraseAction(val))}
+        />
+
+        <AboutSection />
+
+        <SavedPhraseList savedPhrases={state.saved}
+                         removePhrase={(phrase: Phrase) => dispatch(createRemovePhrase(phrase))}
+        />
+      </main>
     </div>
   )
 }

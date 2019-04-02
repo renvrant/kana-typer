@@ -1,7 +1,7 @@
 import { toHiragana, toKatakana } from 'wanakana'
 
 import {Action, AppState, createPhrase, initialAppState, Phrase} from "../types"
-import {SAVE_PHRASE, LOAD_PHRASES, CHANGE_FONT, CHANGE_KANA, UPDATE_CURRENT_PHRASE} from "./app.actions"
+import {SAVE_PHRASE, LOAD_PHRASES, CHANGE_FONT, CHANGE_KANA, UPDATE_CURRENT_PHRASE, CLEAR_PHRASES, REMOVE_PHRASE} from "./app.actions"
 import { savePhrases, getSavedPhrases } from "./storage.service"
 
 export function appReducer(state: AppState = initialAppState, action: Action<any>): AppState {
@@ -21,11 +21,14 @@ export function appReducer(state: AppState = initialAppState, action: Action<any
       const savedPhrases: Phrase[] = [...state.saved, state.currentPhrase]
       savePhrases(savedPhrases)
       return { ...state, currentPhrase: createPhrase(), saved: getSavedPhrases() }
+    case REMOVE_PHRASE:
+      savePhrases(state.saved.filter(phrase => action.payload !== phrase))
+      return { ...state, saved: getSavedPhrases() }
     case LOAD_PHRASES:
       return { ...state, saved: getSavedPhrases() }
-    // case CLEAR_PHRASES:
-    //   savePhrases([])
-    //   return { ...state, saved: getSavedPhrases() }
+    case CLEAR_PHRASES:
+      savePhrases([])
+      return { ...state, saved: getSavedPhrases() }
     case CHANGE_FONT:
       return { ...state, font: action.payload }
     case CHANGE_KANA:

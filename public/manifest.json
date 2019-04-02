@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Kana Typer",
+  "name": "Kana Typer - Romaji to Hiragana and Katakana",
   "icons": [
     {
       "src": "favicon.ico",
