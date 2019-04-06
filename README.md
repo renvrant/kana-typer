@@ -1,5 +1,7 @@
 # Kana Typer
 
+https://festive-northcutt-98d785.netlify.com/
+
 Type a word or phrase in romaji to instantly see the results in hiragana or katakana. Save your word and start building up a reference list.
 
 Kana Typer is a tool for helping you learn the basics of hiragana and katakana. It isn't a translator, so the results won't always be accurate to how words should be written. Therefore, it's best used with words that you already know the correct romanization for. It supports both Hepburn and Kunrei-shiki romanization, but syllables will be shown using the Hepburn system. Roman characters that can't be matched to any kana won't be shown at all (for example, single consonants). Kana Typer is powered by WanaKana.
